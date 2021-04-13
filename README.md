@@ -4,20 +4,20 @@
 
 UDSC 5 - Construtores, palavra this, sobrecarga, encapsulamento
 
-- [] Visão geral do capítulo
-- [] Material de apoio do capítulo
-- [] Construtores
-- [] Sobrecarga
-- [] Sintaxe alternativa para inicializar valores
-- [] Palavra this
-- [] Encapsulamento
-- [] Properties
-- [] Auto Properties
-- [] Ordem sugerida para implementação de membros de classe
+- [ ] Visão geral do capítulo
+- [ ] Material de apoio do capítulo
+- [ ] Construtores
+- [ ] Sobrecarga
+- [ ] Sintaxe alternativa para inicializar valores
+- [ ] Palavra this
+- [ ] Encapsulamento
+- [ ] Properties
+- [ ] Auto Properties
+- [ ] Ordem sugerida para implementação de membros de classe
 - [x] Modificadores de acesso
-- [] Exercício de fixação
-- [] Correção do exercício - PARTE 1
-- [] Correção do exercício - PARTE 2
+- [ ] Exercício de fixação
+- [ ] Correção do exercício - PARTE 1
+- [ ] Correção do exercício - PARTE 2
 
 ![MODIFICADOR_MEMBROS](https://user-images.githubusercontent.com/52930033/113527484-0bc39e80-9594-11eb-8921-92cfe0209eb2.jpg)
 
