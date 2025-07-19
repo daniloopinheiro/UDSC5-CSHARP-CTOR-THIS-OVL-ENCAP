@@ -1,88 +1,153 @@
-# CONHECENDO OS MODIFICADORES E SEUS MEMBROS
+# 📘 Conhecendo os Modificadores e Seus Membros
 
-## REFERÊNCIA DO CÓDIGO BASEADO NA [UDEMY](https://www.udemy.com/course/programacao-orientada-a-objetos-csharp/learn/lecture/12682973#overview)
+Este repositório contém estudos baseados no curso da [Udemy](https://www.udemy.com/course/programacao-orientada-a-objetos-csharp/learn/lecture/12682973#overview), focados nos conceitos fundamentais da Programação Orientada a Objetos com **C#**, incluindo:
 
-UDSC 5 - Construtores, palavra this, sobrecarga, encapsulamento
+> UDSC 5 - Construtores, palavra `this`, sobrecarga, encapsulamento e modificadores de acesso.
 
-- [ ] Visão geral do capítulo
-- [ ] Material de apoio do capítulo
-- [ ] Construtores
-- [ ] Sobrecarga
-- [ ] Sintaxe alternativa para inicializar valores
-- [ ] Palavra this
-- [ ] Encapsulamento
-- [ ] Properties
-- [ ] Auto Properties
-- [ ] Ordem sugerida para implementação de membros de classe
-- [x] Modificadores de acesso
-- [ ] Exercício de fixação
-- [ ] Correção do exercício - PARTE 1
-- [ ] Correção do exercício - PARTE 2
+---
 
-![MODIFICADOR_MEMBROS](https://user-images.githubusercontent.com/52930033/113527484-0bc39e80-9594-11eb-8921-92cfe0209eb2.jpg)
+## 📚 Conteúdo Abordado
 
-Todos os tipos e membros de tipo têm um nível de acessibilidade. O nível de acessibilidade controla se eles podem ser usados de outro código em seu assembly ou outros assemblies. Use os seguintes modificadores de acesso para especificar a acessibilidade de um tipo ou membro ao declará-lo:
+* [ ] Visão geral do capítulo
+* [ ] Material de apoio do capítulo
+* [ ] Construtores
+* [ ] Sobrecarga de Construtores
+* [ ] Inicialização Alternativa
+* [ ] Palavra-chave `this`
+* [ ] Encapsulamento
+* [ ] Properties
+* [ ] Auto Properties
+* [ ] Ordem sugerida de membros
+* [x] **Modificadores de Acesso**
+* [ ] Exercício de fixação
+* [ ] Correção do exercício - Parte 1
+* [ ] Correção do exercício - Parte 2
 
-Classes e estruturas têm membros que representam seus dados e comportamento. Os membros de uma classe incluem todos os membros declarados na classe, junto com todos os membros (exceto construtores e finalizadores) declarados em todas as classes em sua hierarquia de herança. Membros privados em classes base são herdados, mas não são acessíveis a partir de classes derivadas.
+---
 
-> PUBLIC
->> O tipo ou membro pode ser acessado por qualquer outro código no mesmo assembly ou outro assembly que faz referência a ele.
+## 🔐 Modificadores de Acesso em C\#
 
-- PRÓPRIA CLASSE
-- SUBCLASSES NO ASSEMBLY
-- CLASSES DO ASSEMBLY
-- SUBCLASSES FORA DO ASSEMBLY
-- CLASSES FORA DO ASSEMBLY
+Todos os tipos e membros em C# possuem um **nível de acessibilidade** que define seu escopo de visibilidade. Os principais modificadores são:
 
-![csharp_public](https://user-images.githubusercontent.com/52793184/114537681-e1738000-9c28-11eb-996a-2f3955867432.png)
+---
 
+### ✅ `public`
 
-> PROCTECTED INTERNAL
->> O tipo ou membro pode ser acessado por qualquer código no assembly em que está declarado ou de dentro de uma classe derivada em outro
+> Acessível de qualquer lugar — dentro ou fora do assembly.
 
-- PRÓPRIA CLASSE
-- SUBCLASSES NO ASSEMBLY
-- CLASSES DO ASSEMBLY
-- SUBCLASSES FORA DO ASSEMBLY
+```csharp
+public class Pessoa
+{
+    public string Nome;
+    public void Apresentar()
+    {
+        Console.WriteLine($"Olá, meu nome é {Nome}");
+    }
+}
+```
 
-![csharp_protectedinternal](https://user-images.githubusercontent.com/52793184/114537757-f2bc8c80-9c28-11eb-886d-8076950b7eac.png)
+---
 
+### 🛡️ `protected internal`
 
-> INTERNAL
->>O tipo ou membro pode ser acessado por qualquer código no mesmo assembly, mas não de outro assembly.
+> Acessível no mesmo assembly **ou** por classes derivadas em outros assemblies.
 
-- PRÓPRIA CLASSE
-- SUBCLASSES NO ASSEMBLY
-- CLASSES DO ASSEMBLY
+```csharp
+public class Funcionario
+{
+    protected internal decimal Salario;
+}
+```
 
-![csharp_internal](https://user-images.githubusercontent.com/52793184/114537784-fb14c780-9c28-11eb-9621-cc0de82e082c.png)
+---
 
+### 🏠 `internal`
 
-> PROTECTED
->>O tipo ou membro pode ser acessado apenas por código na mesma classe ou em uma classe derivada dessa classe.
+> Acessível **apenas dentro do mesmo assembly**.
 
-- PRÓPRIA CLASSE
-- SUBCLASSES NO ASSEMBLY
-- SUBCLASSES FORA DO ASSEMBLY
+```csharp
+internal class Relatorio
+{
+    public void Gerar() => Console.WriteLine("Relatório gerado.");
+}
+```
 
-![csharp_protected](https://user-images.githubusercontent.com/52793184/114538026-47f89e00-9c29-11eb-93f4-33f8f469d2a0.png)
+---
 
+### 🔒 `protected`
 
-> PRIVATE PROTECTED
->>O tipo ou membro pode ser acessado somente em seu assembly declarante, por código na mesma classe ou em um tipo derivado dessa classe.
+> Acessível apenas na própria classe e em classes derivadas, mesmo em outros assemblies.
 
-- PRÓPRIA CLASSE
-- SUBCLASSES NO ASSEMBLY
+```csharp
+public class Animal
+{
+    protected void Respirar()
+    {
+        Console.WriteLine("Animal respirando...");
+    }
+}
 
-![csharp_classprivateprotected](https://user-images.githubusercontent.com/52793184/114538772-1a602480-9c2a-11eb-978b-afb233010170.png)
+public class Cachorro : Animal
+{
+    public void Executar()
+    {
+        Respirar();
+    }
+}
+```
 
+---
 
-![csharp_privateprotected](https://user-images.githubusercontent.com/52793184/114538065-50e96f80-9c29-11eb-81c8-14db882c937f.png)
+### 🧿 `private protected`
 
+> Acessível **somente no mesmo assembly**, por meio da classe ou subclasse.
 
-> PRIVATE
->>O tipo ou membro pode ser acessado apenas por código na mesma classe ou estrutura.
+```csharp
+public class Documento
+{
+    private protected void Imprimir()
+    {
+        Console.WriteLine("Imprimindo documento...");
+    }
+}
+```
 
-- PRÓPRIA CLASSE
+---
 
-![csharp_private](https://user-images.githubusercontent.com/52793184/114538212-7eceb400-9c29-11eb-9864-2d823ee5c5aa.png)
+### 🔐 `private`
+
+> Acessível **somente na própria classe** ou estrutura.
+
+```csharp
+public class Conta
+{
+    private decimal saldo;
+
+    private void AtualizarSaldo()
+    {
+        saldo += 100;
+    }
+}
+```
+
+---
+
+## 📸 Visão Geral dos Modificadores
+
+![modificadores-csharp](https://user-images.githubusercontent.com/52930033/113527484-0bc39e80-9594-11eb-8921-92cfe0209eb2.jpg)
+
+---
+
+## 📬 Entre em Contato
+
+Entre em contato para **colaborações, dúvidas ou consultorias**:
+
+* ✉️ **Email Pessoal**: [daniloopro@gmail.com](mailto:daniloopro@gmail.com)
+* 🏢 **Email Empresarial (DevsFree)**: [devsfree@devsfree.com.br](mailto:devsfree@devsfree.com.br)
+* 📊 **Consultoria (dopme.io)**: [contato@dopme.io](mailto:contato@dopme.io)
+* 💼 **LinkedIn**: [Danilo O. Pinheiro](https://www.linkedin.com/in/daniloopinheiro)
+* 💻 **Artigos e Blogs**:
+
+  * [Dev.to](https://dev.to/daniloopinheiro)
+  * [Medium](https://medium.com/@daniloopinheiro)
+  * [shifters.dev](https://shifters.dev/daniloopinheiro)
